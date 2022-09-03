@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>API_Rest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API-Rest.Dapper\API-Rest.Dapper.csproj" />
+    <ProjectReference Include="..\API-Rest.Domain\API-Rest.Domain.csproj" />
+    <ProjectReference Include="..\API-Rest.Services\API-Rest.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>
