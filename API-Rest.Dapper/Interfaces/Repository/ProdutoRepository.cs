@@ -64,7 +64,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"DELETE FROM produto WHERE pro_id = @pro_id)";
+                    string query = @"DELETE FROM produto WHERE pro_id = @pro_id";
                     dbConnection.Execute(query, new { Id = id });
                 }
             }
@@ -81,7 +81,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto)";
+                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto";
                     return await dbConnection.QueryAsync<Produto>(query);
                 }
             }
@@ -98,7 +98,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto WHERE pro_id = @pro_id)";
+                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto WHERE pro_id = @pro_id";
                     return dbConnection.QueryFirstOrDefaultAsync<Produto>(query, new { Id = id });
                 }
             }
@@ -115,7 +115,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto WHERE pro_nome = @pro_nome)";
+                    string query = @"SELECT pro_nome, pro_descricao, pro_valorpago, pro_valorvenda, pro_qtde FROM produto WHERE pro_nome = @pro_nome";
                     return await dbConnection.QueryFirstOrDefaultAsync<Produto>(query, new { pro_nome = nome });
                 }
             }
@@ -132,7 +132,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"UPDATE produto SET pro_nome = @pro_nome, pro_descricao = @pro_descricao, pro_valorpago = @pro_valorpago, pro_valorvenda = @pro_valorvenda, pro_qtde = @pro_qtde FROM produto WHERE pro_nome = @pro_nome)";
+                    string query = @"UPDATE produto SET pro_nome = @pro_nome, pro_descricao = @pro_descricao, pro_valorpago = @pro_valorpago, pro_valorvenda = @pro_valorvenda, pro_qtde = @pro_qtde FROM produto WHERE pro_nome = @pro_nome";
                     dbConnection.Execute (query, produto);
                 }
             }
