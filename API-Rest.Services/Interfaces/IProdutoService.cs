@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API_Rest.Services
 {
-    interface IProdutoService
+    public interface IProdutoService
     {       
         Task<IEnumerable<Produto>> GetAllProduto();
 
