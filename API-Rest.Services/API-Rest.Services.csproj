@@ -5,4 +5,9 @@
     <RootNamespace>API_Rest.Services</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\API-Rest.Dapper\API-Rest.Dapper.csproj" />
+    <ProjectReference Include="..\API-Rest.Domain\API-Rest.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
