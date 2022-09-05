@@ -31,7 +31,9 @@ namespace API_Rest.Controllers
             return Ok(produtos);
         }
 
-        [HttpGet("{Id}")]
+        //[HttpGet("{Id}")]
+        [Route("{action}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetProdutoById(int id)
         {
@@ -39,7 +41,9 @@ namespace API_Rest.Controllers
             return Ok(produtos);
         }
 
-        [HttpGet("{Nome}")]
+        //[HttpGet("{Nome}")]
+        [Route("{action}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetProdutoByNome(string nome)
         {

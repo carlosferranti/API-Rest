@@ -33,12 +33,12 @@ namespace API_Rest.Service
 
         public Task<Produto> GetProdutoById(int id)
         {
-            return _produtoRepository.GetProdutoByIdAsysnc(id);
+            return _produtoRepository.GetProdutoByIdAsync(id);
         }
 
         public Task<Produto> GetProdutoByNome(string nome)
         {
-            return _produtoRepository.GetProdutoByNomeAsysnc(nome);
+            return _produtoRepository.GetProdutoByNomeAsync(nome);
         }
 
         public void UpdateProduto(Produto produto)
