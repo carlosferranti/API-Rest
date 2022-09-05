@@ -11,8 +11,7 @@ namespace API_Rest.Dapper
         Task<IEnumerable<Produto>> GetAllAsync();
         Task<Produto> GetByIdAsync(int id);
         Task<Produto> GetByNomeAsync(string nome);
-        void Insert(Produto produto);
-        void Add(Produto produto);
+        void Insert(Produto produto);        
         void Update(Produto produto);
         void Delete(int id);
     }
