@@ -8,12 +8,11 @@ namespace API_Rest.Services
 {
     public interface IProdutoService
     {       
-        Task<IEnumerable<Produto>> GetAllProduto();
-
-        Task<Produto> GetProdutoById(int id);
-        Task<Produto> GetProdutoByNome(string nome);              
-        void AddProdutos(Produto produto);
-        void UpdateProduto(Produto produto);
-        void DeleteProduto(int id);
+        Task<IEnumerable<Produto>> GetAll();
+        Task<Produto> GetById(int id);
+        Task<Produto> GetByNome(string nome);              
+        void Add(Produto produto);
+        void Update(Produto produto);
+        void Delete(int id);
     }
 }

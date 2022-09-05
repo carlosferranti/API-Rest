@@ -9,7 +9,8 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 
 namespace API_Rest.Dapper
-{    public class ProdutoRepository : IProdutoRepository
+{
+    public class ProdutoRepository : IProdutoRepository
     {
         string colunas = @"  pro_cod, 
                             pro_nome , 
@@ -21,7 +22,7 @@ namespace API_Rest.Dapper
                             umed_cod ,
                             cat_cod ,
                             scat_cod ";
-        
+
         protected readonly IConfiguration _config;
 
         public ProdutoRepository(IConfiguration config)
@@ -36,8 +37,8 @@ namespace API_Rest.Dapper
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-                   
-        public async Task<IEnumerable<Produto>> GetAllProdutoAsync()
+
+        public async Task<IEnumerable<Produto>> GetAllAsync()
         {
             try
             {
@@ -54,7 +55,7 @@ namespace API_Rest.Dapper
             }
         }
 
-        public async Task<Produto> GetProdutoByIdAsync(int id)
+        public async Task<Produto> GetByIdAsync(int id)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace API_Rest.Dapper
             }
         }
 
-        public async Task<Produto> GetProdutoByNomeAsync(string nome)
+        public async Task<Produto> GetByNomeAsync(string nome)
         {
             try
             {
@@ -87,7 +88,7 @@ namespace API_Rest.Dapper
                 throw err;
             }
         }
-        public void DeleteProduto(int id)
+        public void Delete(int id)
         {
             try
             {
@@ -95,7 +96,8 @@ namespace API_Rest.Dapper
                 {
                     dbConnection.Open();
                     string query = @"DELETE FROM produto WHERE pro_cod = @pro_cod";
-                    dbConnection.Execute(query, new { Id = id });
+                    //dbConnection.Execute(query, new { Id = id });
+                    dbConnection.Execute(query, new { pro_cod = id });
                 }
             }
             catch (Exception err)
@@ -104,7 +106,7 @@ namespace API_Rest.Dapper
             }
         }
 
-        public void UpdateProduto(Produto produto)
+        public void Update(Produto produto)
         {
             try
             {
@@ -119,7 +121,7 @@ namespace API_Rest.Dapper
                                         pro_qtde = @pro_qtde 
                                         FROM produto 
                                         WHERE pro_nome = @pro_nome";
-                    dbConnection.Execute (query, produto);
+                    dbConnection.Execute(query, produto);
                 }
             }
             catch (Exception err)
@@ -128,7 +130,7 @@ namespace API_Rest.Dapper
             }
         }
 
-        public void AddProdutos(Produto produto)
+        public void Add(Produto produto)
         {
             try
             {
@@ -136,20 +138,23 @@ namespace API_Rest.Dapper
                 {
                     dbConnection.Open();
                     string query = @"INSERT INTO produto
-                                   (pro_nome
+                                   (
+                                    pro_nome
                                    ,pro_descricao                                 
                                    ,pro_valorpago
                                    ,pro_valorvenda
                                    ,pro_qtde    
                                    )
                              VALUES
-                                   (@pro_nome 
+                                   (
+                                    @pro_nome 
                                    ,@pro_descricao                                  
                                    ,@pro_valorpago
                                    ,@pro_valorvenda
                                    ,@pro_qtde 
                                     )";
-                    dbConnection.Execute(query);
+                    //dbConnection.Execute(query, new { produto.pro_nome, produto.pro_descricao, produto.pro_valorpago, produto.pro_valorvenda, produto.pro_qtde });
+                    dbConnection.Execute(query, produto);
                 }
             }
             catch (Exception err)
