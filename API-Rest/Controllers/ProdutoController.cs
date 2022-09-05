@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API_Rest.Services;
 using API_Rest.Domain;
+using System.Net.Http;
 
 namespace API_Rest.Controllers
 {
@@ -22,68 +23,70 @@ namespace API_Rest.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //[Route("[action]")]        
+        [HttpGet("api/v1")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllProduto()
+        public async Task<IActionResult> GetAll()
         {
-            var produtos = await _produtoService.GetAllProduto();
-
+            var produtos = await _produtoService.GetAll();
+            return Ok(produtos); 
+        }
+        
+        [Route("[action]")]
+        [HttpGet]
+        //[HttpGet("api/v1/{id}")]
+        //[HttpGet("api/produtos/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var produtos = await _produtoService.GetById(id);
             return Ok(produtos);
         }
-
-        //[HttpGet("{Id}")]
-        [Route("{action}")]
-        [HttpGet]
+        
+        //[Route("[action]")]
+        //[HttpGet]
+        [HttpGet("api/v1/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetProdutoById(int id)
+        public async Task<IActionResult> GetByNome(string nome)
         {
-            var produtos = await _produtoService.GetProdutoById(id);
+            var produtos = await _produtoService.GetByNome(nome);
             return Ok(produtos);
         }
-
-        //[HttpGet("{Nome}")]
-        [Route("{action}")]
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetProdutoByNome(string nome)
-        {
-            var produtos = await _produtoService.GetProdutoByNome(nome);
-            return Ok(produtos);
-        }
-
         // --
-
+        [Route("[action]")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult AddProdutos([FromBody] Produto produto)
+        public IActionResult Insert([FromBody] Produto produto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _produtoService.AddProdutos(produto);
-            return CreatedAtAction(nameof(GetProdutoById), new { Id = produto.Id }, produto);
+            _produtoService.Insert(produto);
+            return CreatedAtAction(nameof(GetById), new { Id = produto.Id }, produto);
         }
 
+        [Route("[action]")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult UpdateProduto([FromBody] Produto produto)
+        public IActionResult Update([FromBody] Produto produto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _produtoService.UpdateProduto(produto);
+            _produtoService.Update(produto);
             return Ok();
         }
-
-        [HttpDelete]        
+        [Route("[action]")]
+        [HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult DeleteProduto(int id)
+        public IActionResult Delete(int id)
         {
-             _produtoService.DeleteProduto(id);
+            _produtoService.Delete(id);
             return Ok();
         }
     }

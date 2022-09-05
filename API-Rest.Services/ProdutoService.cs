@@ -16,34 +16,34 @@ namespace API_Rest.Service
         {
             _produtoRepository = produtoRepository;
         }
-        public void AddProdutos(Produto produto)
+        public void Insert(Produto produto)
         {
-            _produtoRepository.AddProdutos(produto);
+            _produtoRepository.Insert(produto);
         }
 
-        public void DeleteProduto(int id)
+        public void Delete(int id)
         {
-            _produtoRepository.DeleteProduto(id);
+            _produtoRepository.Delete(id);
         }
 
-        public Task<IEnumerable<Produto>> GetAllProduto()
+        public Task<IEnumerable<Produto>> GetAll()
         {
-            return _produtoRepository.GetAllProdutoAsync();
+            return _produtoRepository.GetAllAsync();
         }
 
-        public Task<Produto> GetProdutoById(int id)
+        public Task<Produto> GetById(int id)
         {
-            return _produtoRepository.GetProdutoByIdAsync(id);
+            return _produtoRepository.GetByIdAsync(id);
         }
 
-        public Task<Produto> GetProdutoByNome(string nome)
+        public Task<Produto> GetByNome(string nome)
         {
-            return _produtoRepository.GetProdutoByNomeAsync(nome);
+            return _produtoRepository.GetByNomeAsync(nome);
         }
 
-        public void UpdateProduto(Produto produto)
+        public void Update(Produto produto)
         {
-            _produtoRepository.UpdateProduto(produto);
+            _produtoRepository.Update(produto);
         }
     }
 }

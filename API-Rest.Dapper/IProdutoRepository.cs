@@ -8,11 +8,11 @@ namespace API_Rest.Dapper
 {
     public interface IProdutoRepository
     {
-        Task<IEnumerable<Produto>> GetAllProdutoAsync();
-        Task<Produto> GetProdutoByIdAsync(int id);
-        Task<Produto> GetProdutoByNomeAsync(string nome);
-        void AddProdutos(Produto produto);
-        void UpdateProduto(Produto produto);
-        void DeleteProduto(int id);
+        Task<IEnumerable<Produto>> GetAllAsync();
+        Task<Produto> GetByIdAsync(int id);
+        Task<Produto> GetByNomeAsync(string nome);
+        void Insert(Produto produto);
+        void Update(Produto produto);
+        void Delete(int id);
     }
 }
