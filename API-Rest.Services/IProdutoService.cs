@@ -11,8 +11,7 @@ namespace API_Rest.Services
         Task<IEnumerable<Produto>> GetAll();
         Task<Produto> GetById(int id);
         Task<Produto> GetByNome(string nome);              
-        void Insert(Produto produto);
-        void Add(Produto produto);
+        void Insert(Produto produto);   
         void Update(Produto produto);
         void Delete(int id);
     }
