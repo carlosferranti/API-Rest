@@ -153,6 +153,7 @@ namespace API_Rest.Dapper
                                    ,@pro_valorvenda
                                    ,@pro_qtde 
                                     )";
+
                     dbConnection.Execute(query, produto);
                 }
             }

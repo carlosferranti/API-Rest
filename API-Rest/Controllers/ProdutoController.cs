@@ -26,6 +26,8 @@ namespace API_Rest.Controllers
         //[HttpGet]
         //[Route("[action]")]        
         [HttpGet("api/v1")]
+        [HttpGet]
+        [Route("[action]")]               
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -53,18 +55,44 @@ namespace API_Rest.Controllers
             var produtos = await _produtoService.GetByNome(nome);
             return Ok(produtos);
         }
+        
+        [Route("[action]")]           
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var produtos = await _produtoService.GetById(id);
+            return Ok(produtos);
+        }
+        
+        [Route("[action]")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetByNome(string nome)
+        {
+            var produtos = await _produtoService.GetByNome(nome);
+            return Ok(produtos);
+        }
+
         // --
         [Route("[action]")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+
         public IActionResult Insert([FromBody] Produto produto)
+
+        public IActionResult Add([FromBody] Produto produto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
+
             _produtoService.Insert(produto);
+
+            _produtoService.Add(produto);
+
             return CreatedAtAction(nameof(GetById), new { Id = produto.Id }, produto);
         }
 
@@ -81,6 +109,7 @@ namespace API_Rest.Controllers
             _produtoService.Update(produto);
             return Ok();
         }
+
         [Route("[action]")]
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]

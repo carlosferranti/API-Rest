@@ -12,6 +12,7 @@ namespace API_Rest.Services
         Task<Produto> GetById(int id);
         Task<Produto> GetByNome(string nome);              
         void Insert(Produto produto);
+        void Add(Produto produto);
         void Update(Produto produto);
         void Delete(int id);
     }

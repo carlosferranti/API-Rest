@@ -16,9 +16,15 @@ namespace API_Rest.Service
         {
             _produtoRepository = produtoRepository;
         }
+
         public void Insert(Produto produto)
         {
             _produtoRepository.Insert(produto);
+
+        public void Add(Produto produto)
+        {
+            _produtoRepository.Add(produto);
+
         }
 
         public void Delete(int id)
