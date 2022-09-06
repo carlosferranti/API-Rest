@@ -13,7 +13,7 @@ using System.Net.Http;
 namespace API_Rest.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ProdutoController : ControllerBase
     {
         protected readonly IProdutoService _produtoService;
@@ -23,8 +23,7 @@ namespace API_Rest.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet]
-        [Route("[action]")]
+        [HttpGet]        
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -33,7 +32,6 @@ namespace API_Rest.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
@@ -42,18 +40,14 @@ namespace API_Rest.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByNome(string nome)
         {
             var produtos = await _produtoService.GetByNome(nome);
             return Ok(produtos);
         }
-
         // --
-
-        [HttpPost]
-        [Route("[action]")]
+        [HttpPost]        
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
@@ -69,7 +63,6 @@ namespace API_Rest.Controllers
         }
 
         [HttpPut]
-        [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Update([FromBody] Produto produto)
@@ -83,7 +76,6 @@ namespace API_Rest.Controllers
         }
 
         [HttpDelete]
-        [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Delete(int id)
         {
