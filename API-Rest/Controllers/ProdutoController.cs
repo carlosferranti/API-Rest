@@ -1,10 +1,6 @@
 ﻿using API_Rest.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using API_Rest.Services;
 using API_Rest.Domain;
@@ -12,7 +8,7 @@ using System.Net.Http;
 
 namespace API_Rest.Controllers
 {
-    [ApiController]
+    [ApiController]    
     [Route("api/[controller]/[action]")]
     public class ProdutoController : ControllerBase
     {
@@ -33,6 +29,7 @@ namespace API_Rest.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var produtos = await _produtoService.GetById(id);
@@ -41,6 +38,7 @@ namespace API_Rest.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Route("{nome}")]
         public async Task<IActionResult> GetByNome(string nome)
         {
             var produtos = await _produtoService.GetByNome(nome);
