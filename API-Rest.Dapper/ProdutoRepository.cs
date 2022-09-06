@@ -12,16 +12,18 @@ namespace API_Rest.Dapper
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        string colunas = @"  pro_cod, 
+        string colunas = @" pro_cod , 
                             pro_nome , 
                             pro_descricao ,
-                            pro_foto  ,
+                            pro_foto ,
                             pro_valorpago ,
                             pro_valorvenda ,
                             pro_qtde ,
                             umed_cod ,
                             cat_cod ,
-                            scat_cod ";
+                            scat_cod ,                           
+                            pro_data_criacao ,
+                            pro_data_atualizacao ";
 
         protected readonly IConfiguration _config;
 
@@ -95,8 +97,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"DELETE FROM produto WHERE pro_cod = @pro_cod";
-                    //dbConnection.Execute(query, new { Id = id });
+                    string query = @"DELETE FROM produto WHERE pro_cod = @pro_cod";                    
                     dbConnection.Execute(query, new { pro_cod = id });
                 }
             }
@@ -114,13 +115,15 @@ namespace API_Rest.Dapper
                 {
                     dbConnection.Open();
                     string query = @"UPDATE produto SET 
-                                        pro_nome = @pro_nome, 
-                                        pro_descricao = @pro_descricao, 
-                                        pro_valorpago = @pro_valorpago, 
-                                        pro_valorvenda = @pro_valorvenda, 
-                                        pro_qtde = @pro_qtde 
-                                        FROM produto 
-                                        WHERE pro_nome = @pro_nome";
+                                        pro_nome             = @pro_nome, 
+                                        pro_descricao        = @pro_descricao, 
+                                        pro_valorpago        = @pro_valorpago, 
+                                        pro_valorvenda       = @pro_valorvenda, 
+                                        pro_qtde             = @pro_qtde,                                        
+                                        pro_data_criacao     = @pro_data_criacao,
+                                        pro_data_atualizacao = @pro_data_atualizacao
+                                     FROM produto 
+                                     WHERE pro_nome     = @pro_nome";
                     dbConnection.Execute(query, produto);
                 }
             }
@@ -139,11 +142,13 @@ namespace API_Rest.Dapper
                     dbConnection.Open();
                     string query = @"INSERT INTO produto
                                    (
-                                    pro_nome
-                                   ,pro_descricao                                 
-                                   ,pro_valorpago
-                                   ,pro_valorvenda
-                                   ,pro_qtde    
+                                     pro_nome
+                                   , pro_descricao                                 
+                                   , pro_valorpago
+                                   , pro_valorvenda
+                                   , pro_qtde  
+                                   , pro_data_criacao 
+                                   , pro_data_atualizacao
                                    )
                              VALUES
                                    (
@@ -151,7 +156,9 @@ namespace API_Rest.Dapper
                                    ,@pro_descricao                                  
                                    ,@pro_valorpago
                                    ,@pro_valorvenda
-                                   ,@pro_qtde 
+                                   ,@pro_qtde                                    
+                                   ,@pro_data_criacao 
+                                   ,@pro_data_atualizacao
                                     )";
 
                     dbConnection.Execute(query, produto);

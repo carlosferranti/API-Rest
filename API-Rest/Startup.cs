@@ -58,6 +58,9 @@ namespace API_Rest
                         Url = new Uri("https://swagger.io/specification/")
                     }
                 });
+                // using System.Reflection;
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });         
         }
 
@@ -69,10 +72,12 @@ namespace API_Rest
                 //Ativa o Swagger
                 app.UseSwagger();
 
-                app.UseSwaggerUI(c =>
+                app.UseSwaggerUI(options =>
                 {
-                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Produtos.Api v1"));
-
+                    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Produtos.Api v1"));
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API Produtos.Api v1");
+                    //options.RoutePrefix = string.Empty;
+                    //options.RoutePrefix = "api/Produto";
                 });
             }
             else

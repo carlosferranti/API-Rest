@@ -1,10 +1,6 @@
 ﻿using API_Rest.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using API_Rest.Services;
 using API_Rest.Domain;
@@ -13,7 +9,8 @@ using System.Net.Http;
 namespace API_Rest.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    //[Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
         protected readonly IProdutoService _produtoService;
@@ -33,6 +30,7 @@ namespace API_Rest.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var produtos = await _produtoService.GetById(id);
@@ -41,16 +39,23 @@ namespace API_Rest.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Route("{nome}")]
         public async Task<IActionResult> GetByNome(string nome)
         {
             var produtos = await _produtoService.GetByNome(nome);
             return Ok(produtos);
         }
         // --
-        [HttpPost]        
+        [HttpPost]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public IActionResult Insert([FromBody] Produto produto)
         {
             if (!ModelState.IsValid)
@@ -75,9 +80,15 @@ namespace API_Rest.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        /// <summary>
+        /// Deleta produto específico.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             _produtoService.Delete(id);
             return Ok();

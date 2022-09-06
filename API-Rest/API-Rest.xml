@@ -4,5 +4,12 @@
         <name>API-Rest</name>
     </assembly>
     <members>
+        <member name="M:API_Rest.Controllers.ProdutoController.Delete(System.Int32)">
+            <summary>
+            Deleta produto específico.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
