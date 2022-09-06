@@ -17,15 +17,6 @@ namespace API_Rest.Service
             _produtoRepository = produtoRepository;
         }
 
-        public void Insert(Produto produto)
-        {
-            _produtoRepository.Insert(produto);
-        }
-        public void Delete(int id)
-        {
-            _produtoRepository.Delete(id);
-        }
-
         public Task<IEnumerable<Produto>> GetAll()
         {
             return _produtoRepository.GetAllAsync();
@@ -39,6 +30,14 @@ namespace API_Rest.Service
         public Task<Produto> GetByNome(string nome)
         {
             return _produtoRepository.GetByNomeAsync(nome);
+        }
+        public void Insert(Produto produto)
+        {
+            _produtoRepository.Insert(produto);
+        }
+        public void Delete(int id)
+        {
+            _produtoRepository.Delete(id);
         }
 
         public void Update(Produto produto)

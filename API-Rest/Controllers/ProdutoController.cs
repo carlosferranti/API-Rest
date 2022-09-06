@@ -24,7 +24,7 @@ namespace API_Rest.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
+        //[Route("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
