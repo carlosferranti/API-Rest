@@ -31,7 +31,6 @@ namespace API_Rest.Dapper
         {
             _config = config;
         }
-
         public IDbConnection Connection
         {
             get
@@ -97,7 +96,7 @@ namespace API_Rest.Dapper
                 using (IDbConnection dbConnection = Connection)
                 {
                     dbConnection.Open();
-                    string query = @"DELETE FROM produto WHERE pro_cod = @pro_cod";                    
+                    string query = @"DELETE FROM produto WHERE pro_cod = @pro_cod";
                     dbConnection.Execute(query, new { pro_cod = id });
                 }
             }
@@ -119,8 +118,7 @@ namespace API_Rest.Dapper
                                         pro_descricao        = @pro_descricao, 
                                         pro_valorpago        = @pro_valorpago, 
                                         pro_valorvenda       = @pro_valorvenda, 
-                                        pro_qtde             = @pro_qtde,                                        
-                                        pro_data_criacao     = @pro_data_criacao,
+                                        pro_qtde             = @pro_qtde,  
                                         pro_data_atualizacao = @pro_data_atualizacao
                                      FROM produto 
                                      WHERE pro_nome     = @pro_nome";
@@ -148,7 +146,6 @@ namespace API_Rest.Dapper
                                    , pro_valorvenda
                                    , pro_qtde  
                                    , pro_data_criacao 
-                                   , pro_data_atualizacao
                                    )
                              VALUES
                                    (
@@ -158,7 +155,6 @@ namespace API_Rest.Dapper
                                    ,@pro_valorvenda
                                    ,@pro_qtde                                    
                                    ,@pro_data_criacao 
-                                   ,@pro_data_atualizacao
                                     )";
 
                     dbConnection.Execute(query, produto);

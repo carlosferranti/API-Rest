@@ -9,8 +9,7 @@ using System.Net.Http;
 namespace API_Rest.Controllers
 {
     [ApiController]
-    //[Route("api/[controller]/[action]")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     public class ProdutoController : ControllerBase
     {
         protected readonly IProdutoService _produtoService;
@@ -27,19 +26,27 @@ namespace API_Rest.Controllers
             var produtos = await _produtoService.GetAll();
             return Ok(produtos);
         }
-
+               
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [Route("{id}")]
+        [Route("[Action]")]       
+        [ProducesResponseType(StatusCodes.Status200OK)]        
         public async Task<IActionResult> GetById(int id)
         {
-            var produtos = await _produtoService.GetById(id);
-            return Ok(produtos);
-        }
+            try
+            {
+                var produtos = await _produtoService.GetById(id);
+                return Ok(produtos);
+            }
+            catch (System.Exception)
+            {
 
+                throw;
+            }          
+        }
+        
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [Route("{nome}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]        
+        [Route("[Action]")]
         public async Task<IActionResult> GetByNome(string nome)
         {
             var produtos = await _produtoService.GetByNome(nome);
@@ -48,14 +55,14 @@ namespace API_Rest.Controllers
         // --
         [HttpPost]
         [ProducesDefaultResponseType]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status403Forbidden)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public IActionResult Insert([FromBody] Produto produto)
         {
             if (!ModelState.IsValid)
