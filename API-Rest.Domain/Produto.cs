@@ -54,13 +54,7 @@ namespace API_Rest.Domain
 
         //    set { this.dataCriacao = value; }
         //}
-
-        //[Display(Name = "Data")]
-        //[Column("Criado", TypeName = "Data/Hora")]
-        //private DateTime? dataCriacao = null;
-
-        //public DateTime? DateCreated { get; set; } = DateTime.Now;
-
+               
 
     }
 }
