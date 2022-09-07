@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
@@ -8,9 +9,7 @@ using System.Text;
 namespace API_Rest.Domain
 {
     public class Produto
-    {
-        private DateTime DefaultValue = DateTime.Now;
-
+    {        
         [Key]
         public int Id { get; set; }
 
@@ -35,26 +34,10 @@ namespace API_Rest.Domain
 
         [Display(Name = "Data")]
         [Column("Criado", TypeName = "Data/Hora")]
-        public DateTime? pro_data_criacao { get; set; } = DateTime.Now;
+        public DateTime? pro_data_criacao { get; set; } = DateTime.Parse(DateTime.Now.ToString(), new CultureInfo("pt-BR"));
 
         [Display(Name = "Data")]
         [Column("Atualizado", TypeName = "Data/Hora")]
-        public DateTime? pro_data_atualizacao { get; set; } = DateTime.Parse(DateTime.Now.ToString(), new CultureInfo("pt-BR"));//DateTime.Now;
-
-        //{
-        //    get
-        //    {
-        //        DateTime dt = DateTime.Now;
-        //        String.Format("{0:dd/MM/yyyy}", dt);
-
-        //        return this.dataCriacao.HasValue
-        //           ? this.dataCriacao.Value                  
-        //           : dt;  //: DateTime.Now.ToString("dd/MM/yyyy");
-        //    }
-
-        //    set { this.dataCriacao = value; }
-        //}
-               
-
+        public DateTime? pro_data_atualizacao { get; set; } = DateTime.Parse(DateTime.Now.ToString(), new CultureInfo("pt-BR"));
     }
 }
