@@ -4,12 +4,25 @@
         <name>API-Rest</name>
     </assembly>
     <members>
-        <member name="M:API_Rest.Controllers.ProdutoController.Delete(System.Int32)">
+        <member name="M:API_Rest.Controllers.ProdutoController.GetAll">
             <summary>
-            Deleta produto específico.
+            Retorna todos.
+            </summary>        
+            <returns></returns> 
+        </member>
+        <member name="M:API_Rest.Controllers.ProdutoController.GetById(System.Int32)">
+            <summary>
+            Retorna produto específico por id.
             </summary>
             <param name="id"></param>
-            <returns></returns>
+            <returns></returns>   
+        </member>
+        <member name="M:API_Rest.Controllers.ProdutoController.Delete(System.Int32)">
+            <summary>
+            Deleta produto específico por id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>   
         </member>
     </members>
 </doc>

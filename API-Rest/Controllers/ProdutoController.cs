@@ -19,15 +19,23 @@ namespace API_Rest.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet]
-        //[Route("")]
+        /// <summary>
+        /// Retorna todos.
+        /// </summary>        
+        /// <returns></returns> 
+        [HttpGet]        
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var produtos = await _produtoService.GetAll();
             return Ok(produtos);
         }
-               
+
+        /// <summary>
+        /// Retorna produto específico por id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>   
         [HttpGet]
         [Route("[Action]")]       
         [ProducesResponseType(StatusCodes.Status200OK)]        
@@ -55,17 +63,11 @@ namespace API_Rest.Controllers
         }
         // --
         [HttpPost]
-        [ProducesDefaultResponseType]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-
+        [ProducesDefaultResponseType]        
+        //[ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-        
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] 
         //[ProducesResponseType(StatusCodes.Status403Forbidden)]
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
         //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -95,12 +97,11 @@ namespace API_Rest.Controllers
         }
 
         /// <summary>
-        /// Deleta produto específico.
+        /// Deleta produto específico por id.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
-        //[HttpDelete]
-        [HttpDelete("{id}")]
+        /// <returns></returns>   
+        [HttpDelete]      
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Delete(int id)
         {
