@@ -19,7 +19,8 @@ namespace API_Rest.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet]        
+        [HttpGet]
+        //[Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -56,9 +57,15 @@ namespace API_Rest.Controllers
         [HttpPost]
         [ProducesDefaultResponseType]
         //[ProducesResponseType(StatusCodes.Status204NoContent)]
+
         [ProducesResponseType(StatusCodes.Status201Created)]
         //[ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         //[ProducesResponseType(StatusCodes.Status403Forbidden)]
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
         //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
