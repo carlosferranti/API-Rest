@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-Rest.Dapper", "API-Rest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-Rest.Services", "API-Rest.Services\API-Rest.Services.csproj", "{4865BBBF-1ADB-4828-8677-0C423166C496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient", "HttpClient\HttpClient.csproj", "{0866A6C7-C018-443D-9766-44E6414BD4BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API-Rest-Client", "API-Rest-Client\API-Rest-Client.csproj", "{8D2ED736-B703-48C3-B670-367108F4992F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{4865BBBF-1ADB-4828-8677-0C423166C496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4865BBBF-1ADB-4828-8677-0C423166C496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4865BBBF-1ADB-4828-8677-0C423166C496}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0866A6C7-C018-443D-9766-44E6414BD4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0866A6C7-C018-443D-9766-44E6414BD4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0866A6C7-C018-443D-9766-44E6414BD4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0866A6C7-C018-443D-9766-44E6414BD4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2ED736-B703-48C3-B670-367108F4992F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2ED736-B703-48C3-B670-367108F4992F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2ED736-B703-48C3-B670-367108F4992F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2ED736-B703-48C3-B670-367108F4992F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
