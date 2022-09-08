@@ -1,6 +1,6 @@
 using System;
 
-namespace API_Rest_Client
+namespace HttpClient.Data
 {
     public class WeatherForecast
     {
